@@ -27,10 +27,9 @@ router.post('/', (req, res) => {
 //id value is stored in the req.params
 router.get('/:id',(req,res)=>{
     let {id} = req.params; //destructuring and getting only id value
-    const findUser = users.find(e=>{
-        e.id === id;
-    })
-    console.log(findUser)
+    console.log(id);
+    const findUser = users.find(e=>e.id === id);
+    console.log(findUser) //gets user data based on the ID
     res.send(findUser);
 })
 
