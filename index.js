@@ -19,7 +19,7 @@ const PORT = 5000;
 
 app.use(bodyParser.json()); // indicates that we are going to use JSON data in our project
 
-app.use('/users',usersRoutes); //for every route to /users, we implement usersRoutes from the line 10
+app.use('/users',usersRoutes); //for every route to /users, we implement usersRoutes from the line 15
 
 
 //app.(get/post/put/delete)('/urlpath',callback);
