@@ -56,8 +56,10 @@ router.patch('/:id', (req, res) => {
         firstName,
         lastName,
         age
-    } = req.body;
+    } = req.body; //holds the information about the request coming in
     const updatedUser = users.find(e => e.id === id); //find the user with the input id
+
+    //here we are checking if the field is undefined or has any value. if true, then update.
     if (firstName) {
         updatedUser.firstName = firstName;
     }
