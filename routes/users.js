@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     let user = req.body; // getting the user data input
     //uuidv4(); unique uid generator
-    users.push( {
+    users.push({
         ...user,
         id: uuidv4()
     }); //get all user data and data id to it
@@ -25,12 +25,49 @@ router.post('/', (req, res) => {
 });
 
 //id value is stored in the req.params
-router.get('/:id',(req,res)=>{
-    let {id} = req.params; //destructuring and getting only id value
+router.get('/:id', (req, res) => {
+    let {
+        id
+    } = req.params; //destructuring and getting only id value
     console.log(id);
-    const findUser = users.find(e=>e.id === id);
+    const findUser = users.find(e => e.id === id);
     console.log(findUser) //gets user data based on the ID
     res.send(findUser);
+});
+
+router.delete('/:id', (req, res) => {
+    const {
+        id
+    } = req.params;
+    //filter removes the value for which the return status is false
+    users = users.filter(e => e.id !== id); //compares the user-id and the parameter id
+
+    res.send(users);
+})
+
+//when we want to partially change something, patch is used.
+//put is used to completely overwrite something
+
+router.patch('/:id', (req, res) => {
+    const {
+        id
+    } = req.params; //get id of the user
+    const {
+        firstName,
+        lastName,
+        age
+    } = req.body;
+    const updatedUser = users.find(e => e.id === id); //find the user with the input id
+    if (firstName) {
+        updatedUser.firstName = firstName;
+    }
+    if (lastName) {
+        updatedUser.lastName = lastName;
+    }
+    if (age) {
+        updatedUser.age = age;
+    }
+    res.send(`User with the id ${id} has been updated!`)
 })
 
 export default router;
